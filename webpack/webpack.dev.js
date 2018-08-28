@@ -1,36 +1,32 @@
 const {
   resolve
 } = require('path');
-const { cpus } = require('os');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const HappyPack = require('happypack');
 const Webpack = require('webpack');
 
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 
 const styleLoaders = [{
-    loader: 'style-loader',
-  },
-  {
-    loader: 'css-loader',
-    options: {
-      sourceMap: true,
-      alias: {
-        assets: resolve('./src/assets'),
-      },
+  loader: 'style-loader',
+},
+{
+  loader: 'css-loader',
+  options: {
+    sourceMap: true,
+    alias: {
+      assets: resolve('./src/assets'),
     },
   },
-  {
-    loader: 'less-loader',
-    options: {
-      sourceMap: true,
-      paths: 'src',
-    },
+},
+{
+  loader: 'less-loader',
+  options: {
+    sourceMap: true,
+    paths: 'src',
   },
+},
 ];
-
-const happyThreadPool = HappyPack.ThreadPool({ size: cpus().length });
 
 
 module.exports = {
@@ -43,9 +39,6 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
-    // modules: [
-    //   'node-modules'
-    // ],
     alias: {
       src: resolve('./../src')
     }
@@ -60,7 +53,14 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ['happypack/loader?id=babel'],
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              cacheDirectory: true
+            }
+          }
+        ],
       },
       {
         test: /\.(css|less)$/,
@@ -103,16 +103,11 @@ module.exports = {
       },
     },
   },
-  context: resolve(__dirname,'./..'),
+  context: resolve(__dirname, './..'),
   plugins: [
     new HtmlWebpackPlugin({
       template: resolve(__dirname, './../index.html'),
       inject: true
-    }),
-    new HappyPack({
-      id: 'babel',
-      threadPool: happyThreadPool,
-      loaders: ['babel-loader?cacheDirectory'],
     }),
     new Webpack.HotModuleReplacementPlugin()
   ],
@@ -133,4 +128,4 @@ module.exports = {
       ],
     },
   },
-}
+};
