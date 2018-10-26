@@ -1,7 +1,8 @@
 {
-  "presets": ["env"],
+  "presets": ["env", "react"],
   "plugins": [
     "babel-plugin-transform-decorators", 
-    "zent"
+    ["zent", {"automaticStyleImport": true}],
+    ["import", { "libraryName": "vant", "libraryDirectory": "lib", "style": true }, "vant"]
   ]
 }

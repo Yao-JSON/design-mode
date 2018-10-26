@@ -5,7 +5,7 @@ import { Button } from 'zent';
 export default class App extends Component {
   render() {
     return (
-      <Button>测试</Button>
+      <Button type="primary">测试</Button>
     );
   }
 }

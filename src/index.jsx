@@ -8,5 +8,4 @@ import { render } from 'react-dom';
 
 import App from './structure-mode/facade/es6';
 
-
-render(<App />, document.getElementById('#app'));
+render(<App />, document.getElementById('app'));
