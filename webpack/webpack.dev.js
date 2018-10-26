@@ -38,7 +38,7 @@ module.exports = {
     sourceMapFilename: '[file].map'
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
+    extensions: ['.jsx', '.js', '.ts', '.tsx', '.json'],
     alias: {
       src: resolve('./../src')
     }

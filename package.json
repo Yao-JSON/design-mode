@@ -48,6 +48,8 @@
     "webpack-merge": "^4.1.4"
   },
   "dependencies": {
+    "react": "^16.6.0",
+    "react-dom": "^16.6.0",
     "zent": "^6.2.0"
   }
 }
